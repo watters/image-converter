@@ -17,7 +17,7 @@ VM_UUID=
 usage() {
 cat <<EOF
 
-Create an Triton KVM image from a given qcow2, vmdk or raw image file.
+Create a Triton KVM image from a given qcow2, vmdk or raw image file.
 
 Usage:
 	$0 -i <SRC_IMAGE> -n <IMAGE_NAME> -o <OS>
