@@ -110,7 +110,7 @@ fi
 # OS value must be bsd, illumos, linux, other, smartos or windows.
 
 get-source-size() {
-	SIZE_BYTES=$(qemu-img info --output=json "$SRC_IMAGE" | json -a virtual-size)
+    SIZE_BYTES=$(qemu-img info "$SRC_IMAGE" | grep "^virtual size" | awk '{print substr($4,2)}')
 
 	# Convert to MB
 	SRC_SIZE=$((SIZE_BYTES/1024/1024))
@@ -118,7 +118,7 @@ get-source-size() {
 }
 
 get-source-type(){
-	SRC_TYPE=$(qemu-img info --output=json "$SRC_IMAGE" | json -a format-specific.type)
+	SRC_TYPE=$(qemu-img info "$SRC_IMAGE" | grep "^file format" | awk '{print $3}')
 	echo "==> Source type is $SRC_TYPE"
 }
 
